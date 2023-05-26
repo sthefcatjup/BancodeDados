@@ -1,0 +1,64 @@
+CREATE TABLE Avaliacao (
+  Aval_id INT PRIMARY KEY,
+  Ped_id INT,
+  Ava_comentario VARCHAR(255),
+  Ava_nota NUMERIC,
+  FOREIGN KEY (Ped_id) REFERENCES Pedidos(Ped_id)
+);
+
+CREATE TABLE Pedidos (
+  Ped_id INT PRIMARY KEY,
+  Usu_id VARCHAR(100),
+  Ped_status VARCHAR(50),
+  Ped_forma_pagamento INT,
+  FOREIGN KEY (Usu_id) REFERENCES Usuarios(Usu_id)
+);
+
+CREATE TABLE Pedido_Produtos (
+  Ped_id INT,
+  Prod_id INT,
+  Pedprod_qtd VARCHAR(50),
+  Pedprod_preco VARCHAR(50),
+  FOREIGN KEY (Ped_id) REFERENCES Pedidos(Ped_id),
+  FOREIGN KEY (Prod_id) REFERENCES Produtos(Prod_id)
+);
+
+CREATE TABLE Produtos (
+  Prod_id INT PRIMARY KEY,
+  Prod_nome VARCHAR(100),
+  Prod_descricao VARCHAR(255),
+  Prod_preco VARCHAR(50),
+  Prod_img INT,
+  Prod_promocao VARCHAR(50),
+  Prod_promocao_preco VARCHAR(50)
+);
+
+CREATE TABLE Usuarios (
+  Usu_id INT PRIMARY KEY,
+  Usu_email VARCHAR(100),
+  Usu_senha VARCHAR(50),
+  Usu_nome VARCHAR(100),
+  Usu_tipo VARCHAR(50),
+  Usu_telefone VARCHAR(20),
+  Usu_ultimo_login INT
+);
+
+CREATE TABLE Endereco (
+  Usu_id INT,
+  End_logradouro VARCHAR(100),
+  End_numero VARCHAR(20),
+  End_bairro VARCHAR(100),
+  End_complemento VARCHAR(100),
+  End_cidade VARCHAR(100),
+  End_estado VARCHAR(50),
+  FOREIGN KEY (Usu_id) REFERENCES Usuarios(Usu_id)
+);
+
+CREATE TABLE Suporte_Cliente (
+  Sup_id INT PRIMARY KEY,
+  Usu_id INT,
+  Usu_mensagem VARCHAR(255),
+  Usu_resposta VARCHAR(255),
+  Usu_status VARCHAR(50),
+  FOREIGN KEY (Usu_id) REFERENCES Usuarios(Usu_id)
+);
