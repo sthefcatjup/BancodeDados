@@ -1,0 +1,15 @@
+-- CHAVE ESTRANGEIRA Avaliacao
+ALTER TABLE Avaliacao ADD CONSTRAINT fk_ava_ped_id FOREIGN KEY (ped_id) REFERENCES Pedidos (ped_id);
+
+-- CHAVE ESTRANGEIRA Pedidos
+ALTER TABLE Pedidos ADD CONSTRAINT fk_ped_usu_id FOREIGN KEY (usu_id) REFERENCES Usuarios (usu_id);
+
+-- CHAVE ESTRANGEIRA Pedido_Produtos
+ALTER TABLE Pedido_Produtos ADD CONSTRAINT fk_pp_ped_id FOREIGN KEY (ped_id) REFERENCES Pedidos (ped_id);
+ALTER TABLE Pedido_Produtos ADD CONSTRAINT fk_pp_prod_id FOREIGN KEY (prod_id) REFERENCES Produtos (prod_id);
+
+-- CHAVE ESTRANGEIRA Usuarios
+ALTER TABLE Usuarios ADD CONSTRAINT fk_usu_end_usu_id FOREIGN KEY (usu_id) REFERENCES Endereco (usu_id);
+
+-- CHAVE ESTRANGEIRA Suporte_Cliente
+ALTER TABLE Suporte_Cliente ADD CONSTRAINT fk_sc_usu_id FOREIGN KEY (usu_id) REFERENCES Usuarios (usu_id);
